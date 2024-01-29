@@ -1,0 +1,120 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        )
+
+        title=name
+
+        link(
+            rel="stylesheet"
+            type="text/css"
+            href="./css/bootstrap.min.css"
+        )
+        link(
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+        )
+
+    body
+        main.bg-white
+            .container.py-5
+                .row.mb-4
+                    .col-3
+                        .ratio.ratio-1x1
+                            img.rounded-circle.object-fit-cover(
+                                src="./profile.jpg"
+                                alt="Profile Image"
+                            )
+
+                    .col-9
+                        .d-flex.flex-column.justify-content-end.h-100
+                            h1=name
+                            .text-muted
+                                p.mt-2.mb-0
+                                    i.bi.bi-envelope-fill.me-2
+                                    =link.email
+                                p.mt-2.mb-0
+                                    i.bi.bi-github.me-2
+                                    =link.github
+
+
+                .row.mb-5
+                    .col-9.offset-3
+                        each intro in intro_list
+                            p=intro
+
+                .row.mb-5
+                    .col-3
+                        h4.text-uppercase.text-end Experience
+                    .col-9
+                        each experience in experience_list
+                            .mb-5
+                                p.lead.mb-2=experience.period
+                                h5.mb-2
+                                    strong=experience.organization
+                                p.text-muted.mb-2=experience.overview
+                                ul
+                                    each description in experience.description_list
+                                        li=description
+
+                .row.mb-5
+                    .col-3
+                        h4.text-uppercase.text-end Project
+                    .col-9
+                        each project in project_list
+                            .mb-5
+                                p.lead.mb-2=project.period
+                                p.text-muted.mb-1=project.organization
+                                h5.mb-2
+                                    strong=project.title
+                                ul
+                                    each description in project.description_list
+                                        li=description
+                                
+                                .me-n2.mb-n1
+                                    each skill in project.skill_list
+                                        span.badge.text-bg-light.me-2.mb-1 ##{skill}
+
+                .row.mb-5
+                    .col-3
+                        h4.text-uppercase.text-end Skill
+                    .col-9
+                        each skill_category in skill_category_list
+                            .mb-5
+                                h5.mb-2
+                                    strong=skill_category.name
+
+                                .d-flex.flex-column.mb-n1
+                                    each level in skill_category.level_list
+                                        .d-flex.flex-row.align-items-stretch.mb-1
+                                            div(style={width: "0.5rem", opacity: level.extent}).flex-shrink-0.bg-secondary.me-2
+                                            .me-n2.mb-n1.py-2
+                                                each skill in level.skill_list
+                                                    span.badge.text-bg-light.me-2.mb-1=skill
+
+                .row.mb-5
+                    .col-3
+                        h4.text-uppercase.text-end Education
+                    .col-9
+                        each education in education_list
+                            .mb-5
+                                p.lead.mb-2=education.period
+                                h5
+                                    strong=education.name
+                                p.text-muted=education.degree
+
+        footer.bg-dark
+            .container.py-5
+                .row
+                    .col-12
+                        p.text-white.mb-0
+                            small Copyright (c) Sookhyun Kwon. All rights reserved.
+
+        script(
+            type="text/javascript"
+            src="./js/bootstrap.min.js"
+        )

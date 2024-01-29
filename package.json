@@ -1,0 +1,8 @@
+{
+	"scripts": {
+		"compile": "node compile.js"
+	},
+	"devDependencies": {
+		"pug": "^3.0.2"
+	}
+}
